@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/CodeBase/AllPOG/src/defines.h
+
+C:/CodeBase/AllPOG/src/testLib.h
+iostream
+-
+defines.h
+C:/CodeBase/AllPOG/src/defines.h
+
+C:/CodeBase/AllPOG/testbed/main.cpp
+iostream
+-
+../src/testLib.h
+C:/CodeBase/AllPOG/src/testLib.h
+
