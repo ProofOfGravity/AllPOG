@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "../defines.h"
 #include "vector"
 #include "../renderer/vulkanAssets.h"
@@ -21,7 +20,7 @@ public:
 
     void platform_shutdown();
 
-    b8 static platform_pump_messages();
+    b8 platform_pump_messages();
 
     void* platform_allocate(u64 size, b8 aligned);
     void platform_free(void* block, b8 aligned);
@@ -29,8 +28,8 @@ public:
     void* platform_copy_memory(void* dest, const void* source, u64 size);
     void* platform_set_memory(void* dest, i32 value, u64 size);
 
-   static void platform_console_write(const char* message, u8 color);
-   static void platform_console_write_error(const char* message, u8 color);
+    void platform_console_write(const char* message, u8 color);
+    void platform_console_write_error(const char* message, u8 color);
 
     f64 platform_get_absolute_time();
 
@@ -40,13 +39,11 @@ public:
     void platform_sleep(u64 ms);
 
     //fetch platform specific extensions for vulkan
-    static void get_platform_extensions(std::vector<const char*> &out_vec);
+    void get_platform_extensions(std::vector<const char*> &out_vec);
 
     //get platform specific surface
-    static b8 get_platform_surface();
+    b8 get_platform_surface(vulkan_context& context);
 
-    //call back function for windows messages and interpretation
-    static LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param);
 
 private:
     void* platform_state{};

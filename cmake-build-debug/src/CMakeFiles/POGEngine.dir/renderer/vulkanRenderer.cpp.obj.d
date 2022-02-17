@@ -2,6 +2,7 @@ src/CMakeFiles/POGEngine.dir/renderer/vulkanRenderer.cpp.obj: \
  C:\CodeBase\AllPOG\src\renderer\vulkanRenderer.cpp \
  C:\CodeBase\AllPOG\src\renderer\vulkanRenderer.h \
  C:/CodeBase/AllPOG/src/defines.h \
+ C:\CodeBase\AllPOG\src\renderer\vulkanAssets.h \
  C:/VulkanSDK/1.2.198.1/Include/vulkan/vulkan.h \
  C:/VulkanSDK/1.2.198.1/Include/vulkan/vk_platform.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stddef.h \
@@ -16,7 +17,6 @@ src/CMakeFiles/POGEngine.dir/renderer/vulkanRenderer.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdint.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/stdint.h \
  C:/VulkanSDK/1.2.198.1/Include/vulkan/vulkan_core.h \
- C:\CodeBase\AllPOG\src\renderer\vulkanAssets.h \
  C:/CodeBase/AllPOG/src/platform/platform.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/stl_algobase.h \

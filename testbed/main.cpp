@@ -1,6 +1,3 @@
-#include <iostream>
-#include "../src/platform/platform.h"
-#include "../src/core/logger.h"
 #include "../src/engine.h"
 
 int main() {

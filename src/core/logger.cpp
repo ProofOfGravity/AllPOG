@@ -1,14 +1,19 @@
 #include "logger.h"
-#include "../platform/platform.h"
+
 
 // TODO: temporary
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
 
-b8 initialize_logging() {
-    // TODO: create log file.
-    return TRUE;
+platform* plat{};
+
+b8 initialize_logging(platform* platform_in) {
+    plat = platform_in;
+    if (plat) {
+        return TRUE;
+    }
+    return false;
 }
 
 void shutdown_logging() {
@@ -39,12 +44,18 @@ void log_output(log_level level, const char* message, ...) {
 
     // Platform-specific output.
     if (is_error) {
-        platform::platform_console_write_error(out_message2, level);
+        plat->platform_console_write_error(out_message2, level);
     } else {
-        platform::platform_console_write(out_message2, level);
+        plat->platform_console_write(out_message2, level);
     }
 }
 
 void report_assertion_failure(const char* expression, const char* message, const char* file, i32 line) {
     log_output(LOG_LEVEL_FATAL, "Assertion Failure: %s, message: '%s', in file: %s, line: %d\n", expression, message, file, line);
+}
+
+void booleanCheckResult(b8 result, const char* msg){
+    if(!result){
+        POG_FATAL(msg);
+    }
 }

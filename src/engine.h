@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "platform/platform.h"
 #include "renderer/vulkanRenderer.h"
+#include "core/logger.h"
 
 class POG_API engine {
 public:
@@ -16,15 +17,9 @@ public:
     void cleanUp();
 
 
-
-
-
 private:
     platform plat{};
     vulkanRenderer renderer{};
-
-
-
 
 };
 

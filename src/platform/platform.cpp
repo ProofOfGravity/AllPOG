@@ -2,11 +2,11 @@
 #if POG_PLATFORM_WINDOWS
 #define VK_USE_PLATFORM_WIN32_KHR
 
-#include "platform.h"
-
-#include "../core/logger.h"
-
 #include <windows.h>
+#include "../core/logger.h"
+//#include "vulkan/vulkan_win32.h"
+#include "vulkan/vulkan.h"
+#include "platform.h"
 
 #include <stdlib.h>
 
@@ -15,7 +15,7 @@ typedef struct internal_state {
     HWND hwnd;
 } internal_state;
 
-
+static LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param);
 
 b8 platform::platform_init(const char *application_name, i32 x, i32 y, i32 width, i32 height) {
 
@@ -183,7 +183,7 @@ void platform::platform_sleep(u64 ms) {
     Sleep(ms);
 }
 
-LRESULT CALLBACK platform::win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param) {
+LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param) {
     switch (msg) {
         case WM_ERASEBKGND:
             // Notify the OS that erasing will be handled by the engine to prevent flicker.
@@ -223,15 +223,21 @@ LRESULT CALLBACK platform::win32_process_message(HWND hwnd, u32 msg, WPARAM w_pa
 }
 
 void platform::get_platform_extensions(std::vector<const char *> &out_vec) {
-    out_vec.push_back("VK_KHR_win32_surface");
+    out_vec.push_back(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
 }
 
-b8 platform::get_platform_surface() {
+b8 platform::get_platform_surface(vulkan_context& context) {
 
     VkWin32SurfaceCreateInfoKHR surfaceCreateInfo{};
     surfaceCreateInfo.sType = {VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR};
 
+    auto state = (internal_state *)platform_state;
+    if(state){
+        surfaceCreateInfo.hwnd = state->hwnd;
+        surfaceCreateInfo.hinstance = GetModuleHandle(nullptr);
+    }
 
+    vkCreateWin32SurfaceKHR(context.instance, &surfaceCreateInfo, context.custom_allocator, &context.surface);
 
     return true;
 }

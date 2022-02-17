@@ -1,6 +1,8 @@
-
 #include "vulkanRenderer.h"
+#define VK_USE_PLATFORM_WIN32_KHR
+#include <vulkan/vulkan.h>
 #include "../core/logger.h"
+
 
 
 //forward declare debug callback, which is implemented at end
@@ -11,15 +13,15 @@ const VkDebugUtilsMessengerCallbackDataEXT* callback_data,
 void* user_data);
 
 
-b8 vulkanRenderer::vulkan_initialize(std::string appName) {
+b8 vulkanRenderer::vulkan_initialize(std::string appName, platform& platform) {
 
-    vulkan_create_instance(appName);
-    vulkan_choose_physical_device();
+    POG_CHECK(vulkan_create_instance(appName, platform), "Failed to create instance");
+    POG_CHECK(vulkan_choose_physical_device(platform), "failed to choose physical device");
 
     return true;
 }
 
-b8 vulkanRenderer::vulkan_create_instance(std::string appName) {
+b8 vulkanRenderer::vulkan_create_instance(std::string appName, platform& platform) {
     VkApplicationInfo appInfo{};
     appInfo.sType = {VK_STRUCTURE_TYPE_APPLICATION_INFO};
     appInfo.apiVersion = VK_API_VERSION_1_2;
@@ -34,7 +36,7 @@ b8 vulkanRenderer::vulkan_create_instance(std::string appName) {
     //generic surface extension
     extensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
     //get platform specific extensions
-    platform::get_platform_extensions(extensions);
+    platform.get_platform_extensions(extensions);
 
     //for debug builds, add debug extension
     //this is currently added manually to cmake file
@@ -92,8 +94,8 @@ b8 vulkanRenderer::vulkan_create_instance(std::string appName) {
     POG_DEBUG("Creating Vulkan debugger...");
     u32 log_severity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT |
                        VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |
-                       VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT;  //|
-    //    VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT;
+                       VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT;//  |
+       // VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT;
 
     VkDebugUtilsMessengerCreateInfoEXT debug_create_info = {VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT};
     debug_create_info.messageSeverity = log_severity;
@@ -106,6 +108,7 @@ b8 vulkanRenderer::vulkan_create_instance(std::string appName) {
     //finally, create the instance
     POG_DEBUG("Creating Instance");
     VK_CHECK(vkCreateInstance(&createInfo, context.custom_allocator, &context.instance));
+    POG_DEBUG("Instance created successfully");
 
     // if in debug, need to get instance specific debug create function
 #if defined(_DEBUG)
@@ -115,7 +118,7 @@ b8 vulkanRenderer::vulkan_create_instance(std::string appName) {
     POG_DEBUG("Vulkan debugger created.");
 #endif
 
-    //if have made it to end of file without error already found
+    //if have made it to end of method without error already found
     //then instance has been created successfully and return true
     return true;
 }
@@ -130,11 +133,12 @@ void vulkanRenderer::vulkan_cleanup() {
     }
 #endif
 
+    vkDestroySurfaceKHR(context.instance, context.surface, context.custom_allocator);
     vkDestroyInstance(context.instance, context.custom_allocator);
 
 }
 
-b8 vulkanRenderer::vulkan_choose_physical_device() {
+b8 vulkanRenderer::vulkan_choose_physical_device(platform& platform) {
 
     //first, enumerate over devices to obtain list
     POG_DEBUG("Enumerating Physical Devices.");
@@ -157,6 +161,10 @@ b8 vulkanRenderer::vulkan_choose_physical_device() {
     }
 
     POG_DEBUG("Creating surface");
+    //creates this surface in vulkanAssets static struct "context.surface"
+
+    platform.get_platform_surface(context);
+
 
 
     return true;

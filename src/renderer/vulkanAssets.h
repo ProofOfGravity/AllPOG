@@ -2,6 +2,7 @@
 #include "../defines.h"
 #include "vulkan/vulkan.h"
 
+
 typedef struct vulkan_context{
 
     VkInstance instance{};
@@ -18,17 +19,10 @@ typedef struct vulkan_context{
 
 #if defined(_DEBUG)
     /** @brief The debug messenger, if active.. */
-    VkDebugUtilsMessengerEXT debug_messenger;
+    VkDebugUtilsMessengerEXT debug_messenger{};
 #endif
 
 } vulkan_context;
-
-
-
-//static structs to be used by vulkan
-static vulkan_context context{};
-
-
 
 
 
@@ -39,7 +33,7 @@ static vulkan_context context{};
 
 /* --------------------------------------------------*/
 //This section is for building a macro to print debug//
-//information about VkResult and tell you what the is//
+//information about VkResult and tell you what it is //
 /*---------------------------------------------------*/
 static const char* vulkanCheckResult(VkResult result)
 {
@@ -80,3 +74,6 @@ static const char* vulkanCheckResult(VkResult result)
 //Macro that defines this function more compactly and prints
 //out result automatically to debug
 #define VK_CHECK(arg) {POG_DEBUG(vulkanCheckResult(arg))}
+
+
+
