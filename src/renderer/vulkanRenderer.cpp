@@ -15,7 +15,10 @@ void* user_data);
 b8 vulkanRenderer::vulkan_initialize(const std::string& appName, platform& platform) {
 
     POG_CHECK(vulkan_create_instance(appName, platform), "Failed to create instance");
-    POG_CHECK(vulkan_choose_physical_device(platform), "failed to choose physical device");
+    POG_CHECK(vulkan_get_surface(platform), "Failed to create surface");
+    POG_CHECK(vulkan_select_physical_device(), "Failed to select physical device");
+
+
 
     return true;
 }
@@ -136,34 +139,24 @@ void vulkanRenderer::vulkan_cleanup() {
 
 }
 
-b8 vulkanRenderer::vulkan_choose_physical_device(platform& platform) {
-
-    //first, enumerate over devices to obtain list
-    POG_DEBUG("Enumerating Physical Devices.");
-    u32 count{};
-    vkEnumeratePhysicalDevices(context.instance, &count, nullptr);
-    if(count == 0){
-        POG_FATAL("Could not find ANY physical device.");
-        return false;
-    }
-    std::vector<VkPhysicalDevice> physicalDevices(count);
-    vkEnumeratePhysicalDevices(context.instance, &count, physicalDevices.data());
-
-    for (auto& device : physicalDevices){
-        VkPhysicalDeviceProperties properties{};
-        vkGetPhysicalDeviceProperties(device, &properties);
-        VkPhysicalDeviceFeatures features{};
-        vkGetPhysicalDeviceFeatures(device, &features);
-    }
+b8 vulkanRenderer::vulkan_get_surface(platform& platform) {
 
     POG_DEBUG("Creating surface");
-    //creates this surface in vulkanAssets static struct "context.surface"
-
-    platform.get_platform_surface(context);
+    if(!platform.get_platform_surface(context)){
+        return false;
+    }
 
     return true;
-
 }
+
+b8 vulkanRenderer::vulkan_select_physical_device() {
+    if(!device_select.vulkan_choose_physical_device(context)){
+        return false;
+    }
+    return true;
+}
+
+
 
 
 //the debug callback function, utilizing POG_LOG

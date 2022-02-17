@@ -6,9 +6,11 @@
 typedef struct vulkan_context{
 
     VkInstance instance{};
-    VkPhysicalDevice physicalDevice{};
 
     VkSurfaceKHR surface{};
+
+    VkPhysicalDevice physical_device{};
+    VkDevice logical_device{};
 
 
     //TODO: Create custom allocator
@@ -74,6 +76,5 @@ static const char* vulkanCheckResult(VkResult result)
 //Macro that defines this function more compactly and prints
 //out result automatically to debug
 #define VK_CHECK(arg) {POG_DEBUG(vulkanCheckResult(arg))}
-
 
 
