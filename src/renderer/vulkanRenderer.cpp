@@ -1,5 +1,4 @@
 #include "vulkanRenderer.h"
-#define VK_USE_PLATFORM_WIN32_KHR
 #include <vulkan/vulkan.h>
 #include "../core/logger.h"
 
@@ -13,7 +12,7 @@ const VkDebugUtilsMessengerCallbackDataEXT* callback_data,
 void* user_data);
 
 
-b8 vulkanRenderer::vulkan_initialize(std::string appName, platform& platform) {
+b8 vulkanRenderer::vulkan_initialize(const std::string& appName, platform& platform) {
 
     POG_CHECK(vulkan_create_instance(appName, platform), "Failed to create instance");
     POG_CHECK(vulkan_choose_physical_device(platform), "failed to choose physical device");
@@ -21,7 +20,7 @@ b8 vulkanRenderer::vulkan_initialize(std::string appName, platform& platform) {
     return true;
 }
 
-b8 vulkanRenderer::vulkan_create_instance(std::string appName, platform& platform) {
+b8 vulkanRenderer::vulkan_create_instance(const std::string& appName, platform& platform) {
     VkApplicationInfo appInfo{};
     appInfo.sType = {VK_STRUCTURE_TYPE_APPLICATION_INFO};
     appInfo.apiVersion = VK_API_VERSION_1_2;
@@ -29,7 +28,6 @@ b8 vulkanRenderer::vulkan_create_instance(std::string appName, platform& platfor
     appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
     appInfo.pEngineName = "POG Engine";
     appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-
 
     //create needed extensions
     std::vector<const char*> extensions{};
@@ -156,16 +154,12 @@ b8 vulkanRenderer::vulkan_choose_physical_device(platform& platform) {
         vkGetPhysicalDeviceProperties(device, &properties);
         VkPhysicalDeviceFeatures features{};
         vkGetPhysicalDeviceFeatures(device, &features);
-
-
     }
 
     POG_DEBUG("Creating surface");
     //creates this surface in vulkanAssets static struct "context.surface"
 
     platform.get_platform_surface(context);
-
-
 
     return true;
 
