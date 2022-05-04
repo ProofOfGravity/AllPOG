@@ -10,11 +10,6 @@ public:
 
     b8 vulkan_choose_physical_device(vulkan_context& context);
 
-
-
-
-
-
 };
 
 

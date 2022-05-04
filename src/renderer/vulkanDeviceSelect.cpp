@@ -54,12 +54,7 @@ b8 vulkanDeviceSelect::vulkan_choose_physical_device(vulkan_context& context) {
 
         context.physical_device = device;
 
-
-
-
-
     }
-
 
     return true;
 

@@ -18,8 +18,6 @@ b8 vulkanRenderer::vulkan_initialize(const std::string& appName, platform& platf
     POG_CHECK(vulkan_get_surface(platform), "Failed to create surface");
     POG_CHECK(vulkan_select_physical_device(), "Failed to select physical device");
 
-
-
     return true;
 }
 
