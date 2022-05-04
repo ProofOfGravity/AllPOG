@@ -8,6 +8,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/POGEngine.dir/engine.cpp.obj.d"
   "CMakeFiles/POGEngine.dir/platform/platform.cpp.obj"
   "CMakeFiles/POGEngine.dir/platform/platform.cpp.obj.d"
+  "CMakeFiles/POGEngine.dir/renderer/vulkanDeviceSelect.cpp.obj"
+  "CMakeFiles/POGEngine.dir/renderer/vulkanDeviceSelect.cpp.obj.d"
   "CMakeFiles/POGEngine.dir/renderer/vulkanRenderer.cpp.obj"
   "CMakeFiles/POGEngine.dir/renderer/vulkanRenderer.cpp.obj.d"
   "libPOGEngine.dll.a"

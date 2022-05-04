@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/CodeBase/AllPOG/src/core/logger.cpp" "src/CMakeFiles/POGEngine.dir/core/logger.cpp.obj" "gcc" "src/CMakeFiles/POGEngine.dir/core/logger.cpp.obj.d"
   "C:/CodeBase/AllPOG/src/engine.cpp" "src/CMakeFiles/POGEngine.dir/engine.cpp.obj" "gcc" "src/CMakeFiles/POGEngine.dir/engine.cpp.obj.d"
   "C:/CodeBase/AllPOG/src/platform/platform.cpp" "src/CMakeFiles/POGEngine.dir/platform/platform.cpp.obj" "gcc" "src/CMakeFiles/POGEngine.dir/platform/platform.cpp.obj.d"
+  "C:/CodeBase/AllPOG/src/renderer/vulkanDeviceSelect.cpp" "src/CMakeFiles/POGEngine.dir/renderer/vulkanDeviceSelect.cpp.obj" "gcc" "src/CMakeFiles/POGEngine.dir/renderer/vulkanDeviceSelect.cpp.obj.d"
   "C:/CodeBase/AllPOG/src/renderer/vulkanRenderer.cpp" "src/CMakeFiles/POGEngine.dir/renderer/vulkanRenderer.cpp.obj" "gcc" "src/CMakeFiles/POGEngine.dir/renderer/vulkanRenderer.cpp.obj.d"
   )
 

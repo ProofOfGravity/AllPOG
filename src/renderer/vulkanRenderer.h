@@ -3,7 +3,9 @@
 #include "../defines.h"
 #include "vulkanAssets.h"
 #include "../platform/platform.h"
+#include "vulkanDeviceSelect.h"
 #include <string>
+
 
 class vulkanRenderer {
 
@@ -17,11 +19,18 @@ public:
 
 private:
     b8 vulkan_create_instance(const std::string& appName, platform& platform);
-    b8 vulkan_choose_physical_device(platform& platform);
+    b8 vulkan_get_surface(platform& platform);
+    b8 vulkan_select_physical_device();
 
 
 private:
+    /*Cached variables*/
     vulkan_context context{};
+
+
+private:
+    /*Helper classes*/
+    vulkanDeviceSelect device_select{};
 };
 
 

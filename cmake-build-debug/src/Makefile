@@ -201,6 +201,30 @@ platform/platform.cpp.s:
 	cd /d C:\CodeBase\AllPOG\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\POGEngine.dir\build.make src/CMakeFiles/POGEngine.dir/platform/platform.cpp.s
 .PHONY : platform/platform.cpp.s
 
+renderer/vulkanDeviceSelect.obj: renderer/vulkanDeviceSelect.cpp.obj
+.PHONY : renderer/vulkanDeviceSelect.obj
+
+# target to build an object file
+renderer/vulkanDeviceSelect.cpp.obj:
+	cd /d C:\CodeBase\AllPOG\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\POGEngine.dir\build.make src/CMakeFiles/POGEngine.dir/renderer/vulkanDeviceSelect.cpp.obj
+.PHONY : renderer/vulkanDeviceSelect.cpp.obj
+
+renderer/vulkanDeviceSelect.i: renderer/vulkanDeviceSelect.cpp.i
+.PHONY : renderer/vulkanDeviceSelect.i
+
+# target to preprocess a source file
+renderer/vulkanDeviceSelect.cpp.i:
+	cd /d C:\CodeBase\AllPOG\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\POGEngine.dir\build.make src/CMakeFiles/POGEngine.dir/renderer/vulkanDeviceSelect.cpp.i
+.PHONY : renderer/vulkanDeviceSelect.cpp.i
+
+renderer/vulkanDeviceSelect.s: renderer/vulkanDeviceSelect.cpp.s
+.PHONY : renderer/vulkanDeviceSelect.s
+
+# target to generate assembly for a file
+renderer/vulkanDeviceSelect.cpp.s:
+	cd /d C:\CodeBase\AllPOG\cmake-build-debug && $(MAKE) $(MAKESILENT) -f src\CMakeFiles\POGEngine.dir\build.make src/CMakeFiles/POGEngine.dir/renderer/vulkanDeviceSelect.cpp.s
+.PHONY : renderer/vulkanDeviceSelect.cpp.s
+
 renderer/vulkanRenderer.obj: renderer/vulkanRenderer.cpp.obj
 .PHONY : renderer/vulkanRenderer.obj
 
@@ -243,6 +267,9 @@ help:
 	@echo ... platform/platform.obj
 	@echo ... platform/platform.i
 	@echo ... platform/platform.s
+	@echo ... renderer/vulkanDeviceSelect.obj
+	@echo ... renderer/vulkanDeviceSelect.i
+	@echo ... renderer/vulkanDeviceSelect.s
 	@echo ... renderer/vulkanRenderer.obj
 	@echo ... renderer/vulkanRenderer.i
 	@echo ... renderer/vulkanRenderer.s

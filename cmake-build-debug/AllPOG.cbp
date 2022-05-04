@@ -166,6 +166,12 @@
 		<Unit filename="C:/CodeBase/AllPOG/src/renderer/vulkanAssets.h">
 			<Option target="POGEngine"/>
 		</Unit>
+		<Unit filename="C:/CodeBase/AllPOG/src/renderer/vulkanDeviceSelect.cpp">
+			<Option target="POGEngine"/>
+		</Unit>
+		<Unit filename="C:/CodeBase/AllPOG/src/renderer/vulkanDeviceSelect.h">
+			<Option target="POGEngine"/>
+		</Unit>
 		<Unit filename="C:/CodeBase/AllPOG/src/renderer/vulkanRenderer.cpp">
 			<Option target="POGEngine"/>
 		</Unit>

@@ -113,12 +113,12 @@ testbed/clean: testbed/CMakeFiles/AllPOG.dir/clean
 src/CMakeFiles/POGEngine.dir/all:
 	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\POGEngine.dir\build.make src/CMakeFiles/POGEngine.dir/depend
 	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\POGEngine.dir\build.make src/CMakeFiles/POGEngine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\CodeBase\AllPOG\cmake-build-debug\CMakeFiles --progress-num=3,4,5,6,7 "Built target POGEngine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\CodeBase\AllPOG\cmake-build-debug\CMakeFiles --progress-num=3,4,5,6,7,8 "Built target POGEngine"
 .PHONY : src/CMakeFiles/POGEngine.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/POGEngine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\CodeBase\AllPOG\cmake-build-debug\CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\CodeBase\AllPOG\cmake-build-debug\CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 src/CMakeFiles/POGEngine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\CodeBase\AllPOG\cmake-build-debug\CMakeFiles 0
 .PHONY : src/CMakeFiles/POGEngine.dir/rule
@@ -144,7 +144,7 @@ testbed/CMakeFiles/AllPOG.dir/all: src/CMakeFiles/POGEngine.dir/all
 
 # Build rule for subdir invocation for target.
 testbed/CMakeFiles/AllPOG.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\CodeBase\AllPOG\cmake-build-debug\CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\CodeBase\AllPOG\cmake-build-debug\CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 testbed/CMakeFiles/AllPOG.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\CodeBase\AllPOG\cmake-build-debug\CMakeFiles 0
 .PHONY : testbed/CMakeFiles/AllPOG.dir/rule

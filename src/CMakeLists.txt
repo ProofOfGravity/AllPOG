@@ -12,9 +12,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 find_package(Vulkan REQUIRED)
 
 #Make a variable with all source files and one with headers
-set(SOURCES platform/platform.cpp core/logger.cpp engine.cpp renderer/vulkanRenderer.cpp  )
+set(SOURCES platform/platform.cpp core/logger.cpp engine.cpp renderer/vulkanRenderer.cpp renderer/vulkanDeviceSelect.cpp)
 set(HEADERS defines.h platform/platform.h core/logger.h engine.h renderer/vulkanRenderer.h
-        renderer/vulkanAssets.h)
+        renderer/vulkanAssets.h renderer/vulkanDeviceSelect.h)
 
 #Make dll
 add_library(${NAME} SHARED ${SOURCES} ${HEADERS})
