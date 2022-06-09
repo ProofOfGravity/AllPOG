@@ -26,6 +26,7 @@ private:
 private:
     /*Cached variables*/
     vulkan_context context{};
+    vulkan_queues queues{};
 
 
 private:

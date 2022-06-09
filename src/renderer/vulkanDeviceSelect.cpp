@@ -1,5 +1,7 @@
 #include "vulkanDeviceSelect.h"
 #include "../core/logger.h"
+#include "vulkanAssets.h"
+#include <map>
 
 
 typedef struct vulkan_physical_device_requirements {
@@ -7,21 +9,13 @@ typedef struct vulkan_physical_device_requirements {
     b8 present;
     b8 compute;
     b8 transfer;
-    // darray
     const char** device_extension_names;
     b8 sampler_anisotropy;
     b8 discrete_gpu;
 } vulkan_physical_device_requirements;
 
-typedef struct vulkan_physical_device_queue_family_info {
-    u32 graphics_family_index;
-    u32 present_family_index;
-    u32 compute_family_index;
-    u32 transfer_family_index;
-} vulkan_physical_device_queue_family_info;
-
-
-b8 vulkanDeviceSelect::vulkan_choose_physical_device(vulkan_context& context) {
+b8 vulkanDeviceSelect::vulkan_choose_physical_device(
+        vulkan_context& context, vulkan_queues& queues) {
 
     //the desired requirements
     //TODO: make this configurable
@@ -44,7 +38,9 @@ b8 vulkanDeviceSelect::vulkan_choose_physical_device(vulkan_context& context) {
     std::vector<VkPhysicalDevice> physicalDevices(count);
     vkEnumeratePhysicalDevices(context.instance, &count, physicalDevices.data());
 
-    for (auto& device : physicalDevices){
+    std::map<u32, VkPhysicalDevice> device_scores{};
+
+    for (const auto& device : physicalDevices){
         VkPhysicalDeviceProperties properties{};
         vkGetPhysicalDeviceProperties(device, &properties);
         VkPhysicalDeviceFeatures features{};
@@ -52,7 +48,30 @@ b8 vulkanDeviceSelect::vulkan_choose_physical_device(vulkan_context& context) {
         VkPhysicalDeviceMemoryProperties memory{};
         vkGetPhysicalDeviceMemoryProperties(device, &memory);
 
-        context.physical_device = device;
+        u32 temp_score{};
+
+        if(!features.geometryShader){
+            POG_FATAL("Must have geometry shader");
+            return false;
+        }
+
+        bool has_discrete_physical_device = false;
+        if(properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
+            temp_score += 100;
+            has_discrete_physical_device = true;
+        }
+
+        if(!has_discrete_physical_device && device_requirements.discrete_gpu){
+            POG_FATAL("No physical device found and one was required");
+        }
+
+        if(device_requirements.sampler_anisotropy && features.samplerAnisotropy){
+            temp_score += 10;
+        }
+
+        POG_INFO("driver name is: %s", properties.deviceName);
+
+
 
     }
 

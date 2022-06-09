@@ -12,7 +12,6 @@ typedef struct vulkan_context{
     VkPhysicalDevice physical_device{};
     VkDevice logical_device{};
 
-
     //TODO: Create custom allocator
     //currently, this is set to nullptr, given there is no allocator right now,
     // so it can be filled in later
@@ -28,7 +27,15 @@ typedef struct vulkan_context{
 
 
 
+typedef struct vulkan_queues {
 
+    VkQueue graphics_family{};
+    VkQueue present_family{};
+    VkQueue transfer_family{};
+    VkQueue compute_family{};
+
+
+} vulkan_queues;
 
 
 

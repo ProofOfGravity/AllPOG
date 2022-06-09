@@ -38,7 +38,7 @@ b8 vulkanRenderer::vulkan_create_instance(const std::string& appName, platform& 
     platform.get_platform_extensions(extensions);
 
     //for debug builds, add debug extension
-    //this is currently added manually to cmake file
+    //this flag is currently set manually to cmake file
 #if defined(_DEBUG)
     extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 #endif
@@ -51,7 +51,7 @@ b8 vulkanRenderer::vulkan_create_instance(const std::string& appName, platform& 
     VkInstanceCreateInfo createInfo{};
     createInfo.sType = {VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO};
     createInfo.pApplicationInfo = &appInfo;
-    createInfo.enabledExtensionCount = (uint32_t)extensions.size();
+    createInfo.enabledExtensionCount = (u32)extensions.size();
     createInfo.ppEnabledExtensionNames = extensions.data();
 
     std::vector<const char*> required_validation_layers{};
@@ -101,6 +101,8 @@ b8 vulkanRenderer::vulkan_create_instance(const std::string& appName, platform& 
     debug_create_info.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT
                                     | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT;
     debug_create_info.pfnUserCallback = vk_debug_callback;
+
+    // now add this debug_creat_info struct to our overall createInfo
     createInfo.pNext = (VkDebugUtilsMessengerCreateInfoEXT*) &debug_create_info;
 #endif
 
@@ -148,7 +150,7 @@ b8 vulkanRenderer::vulkan_get_surface(platform& platform) {
 }
 
 b8 vulkanRenderer::vulkan_select_physical_device() {
-    if(!device_select.vulkan_choose_physical_device(context)){
+    if(!device_select.vulkan_choose_physical_device(context, queues)){
         return false;
     }
     return true;

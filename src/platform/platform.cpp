@@ -235,6 +235,7 @@ b8 platform::get_platform_surface(vulkan_context& context) {
     if(state){
         surfaceCreateInfo.hwnd = state->hwnd;
         surfaceCreateInfo.hinstance = GetModuleHandle(nullptr);
+        
     }
 
     VK_CHECK(vkCreateWin32SurfaceKHR(context.instance, &surfaceCreateInfo, context.custom_allocator, &context.surface));
