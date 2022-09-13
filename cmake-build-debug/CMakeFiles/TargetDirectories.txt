@@ -1,8 +1,0 @@
-C:/CodeBase/AllPOG/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/CodeBase/AllPOG/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/CodeBase/AllPOG/cmake-build-debug/src/CMakeFiles/POGEngine.dir
-C:/CodeBase/AllPOG/cmake-build-debug/src/CMakeFiles/edit_cache.dir
-C:/CodeBase/AllPOG/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
-C:/CodeBase/AllPOG/cmake-build-debug/testbed/CMakeFiles/AllPOG.dir
-C:/CodeBase/AllPOG/cmake-build-debug/testbed/CMakeFiles/edit_cache.dir
-C:/CodeBase/AllPOG/cmake-build-debug/testbed/CMakeFiles/rebuild_cache.dir
